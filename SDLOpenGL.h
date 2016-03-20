@@ -10,7 +10,13 @@ class SDLOpenGL {
         int HEIGHT;
         bool quit;
 
+        SDL_Window* display = NULL;
+        SDL_GLContext context;
 
+
+        /**
+         * Constructor
+        */
         SDLOpenGL () {
             this->SCALE = 2;
             this->WIDTH = 640;
@@ -18,11 +24,11 @@ class SDLOpenGL {
             this->quit = false;
         }
 
-
-        SDL_Window* display = NULL;
-        SDL_GLContext context;
-
-
+        
+        /**
+         * This function is used to initialize the openGL.
+         * @return <bool>
+        */
         bool initGL () {
             bool success = true;
             GLenum error = GL_NO_ERROR;
@@ -48,7 +54,13 @@ class SDLOpenGL {
 
             return success;
         }
+        
 
+        /**
+         * This function is used to initialize the display/window with
+         * the OpenGL context.
+         * @return <bool>
+        */
         bool init () {
             bool success = true;
 
@@ -88,12 +100,18 @@ class SDLOpenGL {
             return success;
         }
 
-
+        
+        /**
+         * Tick/Update function.
+        */
         void update () {
             printf("Update");
         }
 
-
+        
+        /**
+         * This function is used to draw a rotating green plane.
+        */
         void render () {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -109,11 +127,13 @@ class SDLOpenGL {
             glEnd();
         }
 
-
+        
+        /**
+         * This function is used to terminating and killing the program.
+        */
         void close () {
             SDL_DestroyWindow(display);
             display = NULL;
             SDL_Quit(); 
         }
-
 };
